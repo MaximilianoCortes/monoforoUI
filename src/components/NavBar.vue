@@ -7,8 +7,8 @@
   
         <div class="input-group flex-grow-1" style="width: 60%; margin-right: 20px;">
           <input type="text" class="form-control" placeholder="Buscar">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="bi bi-search"></i>
+          <button class="btn btn-outline-secondary" type="button" >
+            <i class="bi bi-search">Buscar</i>
           </button>
         </div>
   
@@ -20,6 +20,7 @@
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
             <li><router-link to="/Perfil" class="dropdown-item">Perfil de Usuario</router-link></li>
             <li><router-link to="/Reportes" class="dropdown-item">Panel de control</router-link></li>
+            <li><router-link to="/CrearPublicacion" class="dropdown-item">Subir Publicación</router-link></li>
             <li><router-link to="/CrearPublicacion" class="dropdown-item">Configuracion</router-link></li>
             <li><router-link to="/" class="dropdown-item">Cerrar Sesion</router-link></li>
           </ul>
