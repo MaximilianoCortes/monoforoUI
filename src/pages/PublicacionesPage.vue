@@ -49,7 +49,7 @@ export default {
           titulo: 'Título de la publicación',
           cuerpo: {
             texto: 'Contenido de la publicación',
-            imagen: 'https://example.com/imagen.jpg' // Opcional, si no hay imagen, puedes dejarlo como null o eliminarlo del objeto
+            imagen: 'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif' // Opcional, si no hay imagen, puedes dejarlo como null o eliminarlo del objeto
           },
           likes: 0,
           dislikes: 0
@@ -62,7 +62,7 @@ export default {
           titulo: 'Título de la publicación',
           cuerpo: {
             texto: 'Contenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar esto',
-            imagen: 'https://example.com/imagen.jpg' 
+            imagen: 'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif' 
           },
           likes: 0,
           dislikes: 0

@@ -14,8 +14,8 @@
   
         <div class="dropdown">
           <button class="btn btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://i.imgur.com/OpfvTcj.png" alt="Perfil" width="30" height="30" class="rounded-circle">
-            {{ nombreUsuario }}
+            <img :src= User.img  alt="Perfil" width="30" height="30" class="rounded-circle">
+            {{ User.username }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
             <li><router-link to="/Perfil" class="dropdown-item">Perfil de usuario</router-link></li>
@@ -34,7 +34,12 @@
     name: 'NavBar',
     data() {
       return {
-        nombreUsuario: "Usuario",
+        User:{
+          id: "1",
+          name: "Usuario",
+          email:"email@gmail.com",
+          img:"https://i.imgur.com/OpfvTcj.png"
+        },
         backgroundImage: "url('https://i.imgur.com/QdyXDv6.png')",
       };
     },
