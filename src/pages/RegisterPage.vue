@@ -4,8 +4,7 @@
       <!-- Componente a la izquierda -->
         <CarouselComponent 
           :imagenes="[
-            'https://i.imgur.com/VoRabCE.png',
-            'https://i.imgur.com/xv0tfCG.png',
+            'https://i.imgur.com/TGSEAPB.png',
             'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
             'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
           ]" />
@@ -90,7 +89,7 @@ export default {
   align-items: center;
   height: 100%;
   width: 50%;
-  background-color: #13f05c;
+  background-color: #4F77B0;
 }
 
 .register-container {

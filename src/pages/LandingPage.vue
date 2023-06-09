@@ -3,8 +3,7 @@
     <div class="carousel-container">
       <CarouselComponent 
         :imagenes="[
-          'https://i.imgur.com/VoRabCE.png',
-          'https://i.imgur.com/xv0tfCG.png',
+          'https://i.imgur.com/3g9Ea2z.png',
           'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
           'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
         ]" />
@@ -54,7 +53,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 70%;
-  background-color: #13f05c;
+  background-color: #4F77B0;
 }
 
 .buttons-section {
@@ -63,7 +62,6 @@ export default {
   align-items: center;
   width: 100%;
   height: 30%;
-  background-color: #c8ff00;
 }
 
 .btn {
