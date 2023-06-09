@@ -18,10 +18,10 @@
             {{ nombreUsuario }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-            <li><router-link to="/Perfil" class="dropdown-item">Perfil de Usuario</router-link></li>
+            <li><router-link to="/Perfil" class="dropdown-item">Perfil de usuario</router-link></li>
             <li><router-link to="/Reportes" class="dropdown-item">Panel de control</router-link></li>
-            <li><router-link to="/CrearPublicacion" class="dropdown-item">Configuracion</router-link></li>
-            <li><router-link to="/" class="dropdown-item">Cerrar Sesion</router-link></li>
+            <li><router-link to="/CrearPublicacion" class="dropdown-item">Configuración</router-link></li>
+            <li><router-link to="/" class="dropdown-item">Cerrar sesión</router-link></li>
           </ul>
         </div>
       </div>

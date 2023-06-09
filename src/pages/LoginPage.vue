@@ -98,9 +98,6 @@ export default {
   width: 100%;
 }
 
-.login-container .form-control {
-  border: 1px solid #13f05c;
-}
 
 .login-container button {
   width: 100%;

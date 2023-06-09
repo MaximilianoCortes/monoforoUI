@@ -104,9 +104,7 @@ export default {
   width: 100%;
 }
 
-.register-container .form-control {
-  border: 1px solid #13f05c;
-}
+
 
 .register-container button {
   width: 100%;
