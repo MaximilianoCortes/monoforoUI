@@ -27,14 +27,14 @@
 import NavBar from '../components/NavBar.vue';
 import PostsReportadosComponent from '../components/PostsReportadosComponent.vue';
 import UsuariosReportadosComponent from '../components/UsuariosReportadosComponent.vue';
-
+import axios from 'axios';
 export default {
   name: 'ReportesPage',
   components: {
     NavBar,
     PostsReportadosComponent,
     UsuariosReportadosComponent
-  },
+  }, 
   data() {
     return {
       reportedPosts: [],
@@ -43,6 +43,13 @@ export default {
       isLoadingUsers: false
     };
   },
+  created() {
+  const token = localStorage.getItem('token');
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
+},
   methods: {
     loadReportedPosts() {
       this.isLoadingPosts = true;

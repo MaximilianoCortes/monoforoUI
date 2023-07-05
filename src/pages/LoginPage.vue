@@ -60,13 +60,18 @@ export default {
       axios.post(url, loginData)
         .then(response => {
           console.log(response.data);
-          // Aquí puedes realizar la redirección a la siguiente pestaña
+         
+          localStorage.setItem('token', response.data.token);
+
+          axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+
           this.$router.push('/Publicaciones');
         })
         .catch(error => {
           console.error(error);
           this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
         });
+
     },
     goToRegister() {
       this.$router.push('/Register');

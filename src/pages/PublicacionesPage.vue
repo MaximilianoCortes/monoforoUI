@@ -2,7 +2,6 @@
   <div id="pagina">
     
     <NavBar/>
-
     <div class="d-flex justify-content-center">
     <div id="container">
       <div class="botones">
@@ -17,7 +16,7 @@
         <div class="publicaciones-container">
           <PublicacionComponent
             v-for="publicacion in publicaciones"
-            :key="publicacion.id"
+            :key="publicacion._id"
             :publicacion="publicacion"
           />
         </div>
@@ -42,6 +41,17 @@ export default {
       publicaciones: []
     };
   },
+  mounted(){
+    this.submitForm()
+  },
+//PONER PARA QUE EL TOKEN FUNCIONE BIEEN
+  created() {
+  const token = localStorage.getItem('token');
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
+},
   methods:{
     submitForm() {
       const url = `http://localhost:3000/all_posts`;

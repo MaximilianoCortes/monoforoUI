@@ -9,6 +9,7 @@ import CrearPublicacionPage from '../pages/CrearPublicacionPage.vue';
 import PerfilPage from '../pages/PerfilPage.vue';
 import EditarPerfil from '../pages/EditarPerfil.vue';
 import ViewReportePosts from '../pages/ViewReportePosts.vue';
+import perfilPageByPubli from '../pages/PerfilPageByPubli.vue';
 
 const routes = [
 
@@ -25,7 +26,7 @@ const routes = [
       props: true,
     },{
       name: 'MakeReportsPage',
-      path: '/report',
+      path: '/report/:post_id',
       component: ViewReportePosts,
       props: true,
     },
@@ -63,6 +64,12 @@ const routes = [
       name: 'PerfilPage',
       path: '/Perfil',
       component: PerfilPage,
+      props:true
+    },
+    {
+      name: 'PerfilPageByPubli',
+      path: '/Perfil/:userId',
+      component: perfilPageByPubli,
       props:true
     },
     

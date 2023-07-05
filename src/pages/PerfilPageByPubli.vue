@@ -21,7 +21,6 @@
           <h2>{{ save_user.name }}</h2>
           <h4>Descripción</h4>
           <p>{{ save_profile.description }}</p>
-          <router-link to="/update" class="btn-edit-profile">Editar perfil</router-link>
         </div>
       </div>
     </div>
@@ -47,22 +46,22 @@ export default {
     const token = localStorage.getItem("token");
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      
     }
-   
   },
   mounted(){
-    this.CurrentUser();
+    this.user_id = this.$route.params.userId;
+    this.publiUser()
+    this.CurrentProfile()
   },
-  
   methods: {
-    CurrentUser() {
+    publiUser() {
       axios
-        .get("http://localhost:3000/current")
+        .get(`http://localhost:3000/${this.user_id}/user`)
         .then((response) => {
           this.save_user = response.data;
-          this.user_id = response.data._id;
           console.log(response.data);
-          this.CurrentProfile()
+         
         })
         .catch((error) => {
           console.log(error);
