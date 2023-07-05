@@ -7,13 +7,13 @@
       </div>
   
       <ul v-if="!isLoading" class="list-group mt-4">
-        <li v-for="user in reportedUsers" :key="user.id" class="list-group-item d-flex justify-content-between align-items-center">
+        <li v-for="user in reportedUsers" :key="user._id" class="list-group-item d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column">
             <h5>{{ user.name }}</h5>
             <p class="text-muted"></p>
           </div>
           <div>
-            <button @click="$emit('ban-user', user.id)" class="btn btn-danger btn-sm mr-2">Banear</button>
+            <button @click="$emit('ban-user', user._id)" class="btn btn-danger btn-sm mr-2">Banear</button>
           </div>
         </li>
       </ul>
