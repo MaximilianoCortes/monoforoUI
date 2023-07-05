@@ -15,7 +15,7 @@
     </div>
     <div class="card-body">
       <p>{{ post.body_text }}</p>
-      <img v-if="post.img" :src="post.img" alt="Imagen de la publicación">
+      <img class="mw-100 mh-100" v-if="post.img" :src="post.img" alt="Imagen de la publicación">
     </div>
     <div class="card-footer">
       <button @click="handleReaction(1)" :disabled="userReaction === 1" class="btn text-white">

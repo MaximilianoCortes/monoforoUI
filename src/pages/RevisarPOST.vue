@@ -2,20 +2,25 @@
   <div id="pagina">
     <NavBar/>
     <div class="d-flex justify-content-center">
-      <div id="container">
-        <div class="publicaciones-lista">
-          <div class="publicaciones-container">
-            <div class="post-item">
-              <h2>{{ publicacion.title }}</h2>
-              <p>{{ publicacion.body_text }}</p>
-              <img :src="publicacion.img" alt="Imagen del post">
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="publicaciones-lista">
+              <div class="publicaciones-container">
+                <div class="post-item card" v-if="publicacion">
+                  <h2 class="card-title font-weight-bold text-light" id="titulo"> {{ publicacion.title }}</h2>
+                  <p class="card-text text-muted font-weight-light"> {{ publicacion.body_text }}</p>
+                  <img v-if="publicacion.img" :src="publicacion.img" alt="Imagen del post" class="card-img-top mw-100 mh-100">
+                  <br>
+                  <router-link :to="`/Perfil/${publicacion.userId}`" id="verPerfil" class="btn btn-primary">Ver perfil</router-link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -29,12 +34,13 @@ export default {
   },
   data() {
     return {
-      publicacion: [],
+      publicacion: {},
       post_id: ''
     };
   },
   mounted() {
     this.post_id = this.$route.params.post_id;
+    console.log(this.post_id);
     this.submitForm();
   },
   created() {
@@ -44,19 +50,16 @@ export default {
     }
   },
   methods: {
-    submitForm() {
-      const url = `http://localhost:3000/getPost`;
-      const postData = {
-        post_id: this.post_id
-      }
-      axios.get(url, postData)
+    async submitForm() {
+      const url = `http://localhost:3000/getPost/${this.post_id}`;
+      await axios.get(url)
         .then(response => {
-          console.log(response.data);
-          this.publicacion = response.data;
+          console.log(response.data.post);
+          this.publicacion = response.data.post;
         })
         .catch(error => {
           console.error(error);
-          this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
+          this.errorMessage = 'Error al obtener la publicación';
         });
     },
 
@@ -85,16 +88,12 @@ export default {
   overflow: hidden; 
 }
 
-.publicaciones-lista {
-  width: 85%;
-  overflow-y: scroll; 
-  height: calc(100vh - 100vh);
+#verPerfil{
+  background-image: url('https://i.imgur.com/QdyXDv6.png');
 }
 
-.publicaciones-container {
-  height: fit-content;
-  margin-left: 20px;
-  margin-right: 20px;
+#titulo{
+  background-image: url('https://i.imgur.com/QdyXDv6.png');
 }
 
 .post-item {

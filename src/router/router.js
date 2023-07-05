@@ -10,7 +10,7 @@ import PerfilPage from '../pages/PerfilPage.vue';
 import EditarPerfil from '../pages/EditarPerfil.vue';
 import ViewReportePosts from '../pages/ViewReportePosts.vue';
 import perfilPageByPubli from '../pages/PerfilPageByPubli.vue';
-import RevisarPost from '../pages/RevisarPOST.vue'
+import RevisionP from '../pages/RevisarPOST.vue'
 
 const routes = [
 
@@ -52,7 +52,7 @@ const routes = [
     {
       name: 'RevisarPost',
       path: '/Revisar/:post_id',
-      component: RevisarPost,
+      component: RevisionP,
       props:true
     },
     {
