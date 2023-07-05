@@ -10,6 +10,7 @@ import PerfilPage from '../pages/PerfilPage.vue';
 import EditarPerfil from '../pages/EditarPerfil.vue';
 import ViewReportePosts from '../pages/ViewReportePosts.vue';
 import perfilPageByPubli from '../pages/PerfilPageByPubli.vue';
+import RevisarPost from '../pages/RevisarPOST.vue'
 
 const routes = [
 
@@ -46,6 +47,12 @@ const routes = [
       name: 'PublicacionesPage',
       path: '/Publicaciones',
       component: PublicacionesPage,
+      props:true
+    },
+    {
+      name: 'RevisarPost',
+      path: '/Revisar/:post_id',
+      component: RevisarPost,
       props:true
     },
     {

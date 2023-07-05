@@ -12,7 +12,7 @@
       </div>
       <div class="d-flex justify-content-between">
         <div class="mb-3" style="width: 35%;">
-          <input class="form-control" type="text" id="formText" v-model="img" placeholder="Url de imagen :p" required>
+          <input class="form-control" type="text" id="formText" v-model="img" placeholder="Url de imagen :p">
         </div>
         <div style="width: 35%;">
           <button type="submit" class="btn btn-secondary btn-block" style="width: 100%;">Publicar</button>
@@ -49,7 +49,7 @@ export default {
   methods: {
     submitForm() {
       // Verificar si se han completado todos los campos obligatorios
-      if (!this.title || !this.img) {
+      if (!this.title) {
         this.errorMessage = 'Por favor, complete todos los campos obligatorios.';
         return;
       }

@@ -3,48 +3,40 @@
     <NavBar/>
     <div class="d-flex justify-content-center">
       <div id="container">
-        <div class="botones">
-          <div class="botones-inner">
-            <router-link to="/CrearPublicacion"><button id="publicar" type="submit" class="btn btn-block mb-3">Publicar</button></router-link>
-            <button id="filtro" class="btn" @click="refreshPage">Actualizar</button>
-            <button id="filtro" class="btn">Destacado</button>
-            <button id="filtro" class="btn">Nuevo</button>
-          </div>
-        </div>
         <div class="publicaciones-lista">
           <div class="publicaciones-container">
-            <PublicacionComponent
-              v-for="publicacion in publicaciones"
-              :key="publicacion._id"
-              :publicacion="publicacion"
-            />
+            <div class="post-item">
+              <h2>{{ publicacion.title }}</h2>
+              <p>{{ publicacion.body_text }}</p>
+              <img :src="publicacion.img" alt="Imagen del post">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue'
-import PublicacionComponent from '../components/PublicacionComponent.vue'
 import axios from 'axios'
 
 export default {
-  name: 'PublicacionesPage',
+  name: 'RevisionP',
   components: {
     NavBar,
-    PublicacionComponent,
   },
   data() {
     return {
-      publicaciones: []
+      publicacion: [],
+      post_id: ''
     };
   },
   mounted() {
+    this.post_id = this.$route.params.post_id;
     this.submitForm();
   },
-  // PONER PARA QUE EL TOKEN FUNCIONE BIEN
   created() {
     const token = localStorage.getItem('token');
     if (token) {
@@ -53,24 +45,24 @@ export default {
   },
   methods: {
     submitForm() {
-      const url = `http://localhost:3000/all_posts`;
-      axios.get(url)
+      const url = `http://localhost:3000/getPost`;
+      const postData = {
+        post_id: this.post_id
+      }
+      axios.get(url, postData)
         .then(response => {
           console.log(response.data);
-          this.publicaciones = response.data;
+          this.publicacion = response.data;
         })
         .catch(error => {
           console.error(error);
           this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
         });
     },
-    refreshPage() {
-      location.reload();
-    }
+
   }
 };
 </script>
-
 
 <style scoped>
 #publicar{
@@ -96,7 +88,7 @@ export default {
 .publicaciones-lista {
   width: 85%;
   overflow-y: scroll; 
-  height: calc(100vh -100vh);
+  height: calc(100vh - 100vh);
 }
 
 .publicaciones-container {
@@ -104,6 +96,11 @@ export default {
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.post-item {
+  margin-bottom: 20px;
+}
+
 .botones {
   width: 15%;
   background-image: url('https://i.imgur.com/qWuUWKH.png');
@@ -117,6 +114,4 @@ export default {
   flex-direction: column;
   gap: 15px; 
 }
-
-
 </style>

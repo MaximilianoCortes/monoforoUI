@@ -10,11 +10,10 @@
         <li v-for="user in reportedUsers" :key="user.id" class="list-group-item d-flex justify-content-between align-items-center">
           <div class="d-flex flex-column">
             <h5>{{ user.name }}</h5>
-            <p class="text-muted">{{ user.reportReason }}</p>
+            <p class="text-muted"></p>
           </div>
           <div>
             <button @click="$emit('ban-user', user.id)" class="btn btn-danger btn-sm mr-2">Banear</button>
-            <button @click="$emit('dismiss-report', user.id)" class="btn btn-secondary btn-sm">Descartar</button>
           </div>
         </li>
       </ul>
@@ -29,10 +28,6 @@
         type: Array,
         required: true
       },
-      isLoading: {
-        type: Boolean,
-        default: false
-      }
     }
   };
   </script>

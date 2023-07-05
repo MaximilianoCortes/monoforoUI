@@ -6,16 +6,14 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="text-center">
-            <button @click="loadReportedPosts" class="btn btn-primary">Cargar publicaciones reportadas</button>
           </div>
-          <PostsReportadosComponent :reportedPosts="reportedPosts" :isLoading="isLoadingPosts"
+          <PostsReportadosComponent :reportedPosts="reportedPosts"
             @delete-post="deletePost" @dismiss-report="dismissReport" />
         </div>
         <div class="col-lg-6">
           <div class="text-center">
-            <button @click="loadReportedUsers" class="btn btn-primary">Cargar usuarios reportados</button>
           </div>
-          <UsuariosReportadosComponent :reportedUsers="reportedUsers" :isLoading="isLoadingUsers"
+          <UsuariosReportadosComponent :reportedUsers="reportedUsers"
             @ban-user="banUser" @dismiss-report="dismissReport" />
         </div>
       </div>
@@ -39,8 +37,6 @@ export default {
     return {
       reportedPosts: [],
       reportedUsers: [],
-      isLoadingPosts: false,
-      isLoadingUsers: false
     };
   },
   created() {
@@ -50,44 +46,77 @@ export default {
   }
 
 },
+mounted(){
+this.showReportedPost()
+this.showResponsibleUsers()
+},
   methods: {
-    loadReportedPosts() {
-      this.isLoadingPosts = true;
 
-      // Simulación de carga de datos
-      setTimeout(() => {
-        this.reportedPosts = [
-          { id: 1, title: 'Publicación 1', reportReason: 'Contenido inapropiado' },
-          { id: 2, title: 'Publicación 2', reportReason: 'Spam' },
-          { id: 3, title: 'Publicación 3', reportReason: 'Comportamiento ofensivo' }
-        ];
-        this.isLoadingPosts = false;
-      }, 2000);
-    },
-    loadReportedUsers() {
-      this.isLoadingUsers = true;
+    showReportedPost(){
 
-      // Simulación de carga de datos
-      setTimeout(() => {
-        this.reportedUsers = [
-          { id: 1, name: 'Usuario 1', reportReason: 'Comportamiento inapropiado' },
-          { id: 2, name: 'Usuario 2', reportReason: 'Acoso' },
-          { id: 3, name: 'Usuario 3', reportReason: 'Incumplimiento de normas' }
-        ];
-        this.isLoadingUsers = false;
-      }, 2000);
+      const url = `http://localhost:3000/reported_posts`;
+      axios.get(url)
+        .then(response => {
+          console.log(response.data);
+          this.reportedPosts=response.data
+        })
+        .catch(error => {
+          console.error(error);
+
+        });
+
     },
+    showResponsibleUsers(){
+      const url = `http://localhost:3000/reported_users`;
+      axios.get(url)
+        .then(response => {
+          this.reportedUsers=response.data
+          console.log(response.data);
+        
+        })
+        .catch(error => {
+          console.error(error);
+
+        });
+
+    },
+
     deletePost(postId) {
-      // Lógica para eliminar la publicación con el ID proporcionado
+      const url = `http://localhost:3000/${postId}`;
+      axios.delete(url)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+          console.error(error);
+        });
       console.log('Eliminar publicación con ID:', postId);
+      location.reload();
     },
     dismissReport(reportId) {
-      // Lógica para descartar el reporte con el ID proporcionado
+      const url = `http://localhost:3000/dismiss_report/${reportId}`;
+      axios.delete(url)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+          console.error(error);
+        });
       console.log('Descartar reporte con ID:', reportId);
+      location.reload();
     },
-    banUser(userId) {
-      // Lógica para banear al usuario con el ID proporcionado
-      console.log('Banear usuario con ID:', userId);
+    banUser(user_id) {
+      const url = `http://localhost:3000/ban/${user_id}`;
+      axios.post(url)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+          console.error(error);
+          this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
+        });
+      console.log('Banear usuario con ID:', user_id);
+      location.reload();
     }
   }
 };

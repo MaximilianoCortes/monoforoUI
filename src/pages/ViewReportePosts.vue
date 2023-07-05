@@ -14,9 +14,6 @@
       <router-link to="/Publicaciones" class="btn btn-secondary"
         >Cancelar</router-link
       >
-      <p v-if="successMessage" class="text-success">
-        ¡El reporte se ha enviado correctamente!
-      </p>
     </form>
   </div>
 </template>
@@ -30,7 +27,6 @@ export default {
     return {
       reason: "",
       post_id: "",
-      successMessage: "",
     };
   },
   components: {
@@ -65,6 +61,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.successMessage = "¡El reporte se ha enviado correctamente!";
+          console.log(this.successMessage)
           this.$router.push("/Publicaciones");
         })
         .catch((error) => {
