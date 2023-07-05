@@ -45,10 +45,9 @@ export default {
   methods: {
     logout() {
       // Eliminar el token del localStorage
-      localStorage.removeItem('token');
+      localStorage.clear();
 
       // Redireccionar a la página principal
-      this.$router.push('/');
     },
     getCurrentUser() {
       axios

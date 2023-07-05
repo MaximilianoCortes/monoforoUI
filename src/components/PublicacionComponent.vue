@@ -14,9 +14,9 @@
       <h4 class="card-title">{{ post.title }}</h4>
     </div>
     <div class="card-body">
-      <p>{{ post.body_text }}</p>
-      <img class="mw-100 mh-100" v-if="post.img" :src="post.img" alt="Imagen de la publicación">
-    </div>
+    <p>{{ post.body_text }}</p>
+    <img class="post-image" v-if="post.img" :src="post.img" alt="Imagen de la publicación">
+  </div>
     <div class="card-footer">
       <button @click="handleReaction(1)" :disabled="userReaction === 1" class="btn text-white">
         <i class="bi bi-hand-thumbs-up-fill"></i>
@@ -138,5 +138,9 @@ export default {
   display: flex;
   justify-content: space-between;
   color: white;
+}
+.post-image {
+  max-height: 400px;
+  width: auto; /* El ancho se ajusta de manera proporcional */
 }
 </style>
