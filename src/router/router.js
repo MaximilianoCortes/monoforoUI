@@ -7,6 +7,8 @@ import PublicacionesPage from '../pages/PublicacionesPage.vue';
 import ReportesPage from '../pages/ReportesPage.vue';
 import CrearPublicacionPage from '../pages/CrearPublicacionPage.vue';
 import PerfilPage from '../pages/PerfilPage.vue';
+import EditarPerfil from '../pages/EditarPerfil.vue';
+import ViewReportePosts from '../pages/ViewReportePosts.vue';
 
 const routes = [
 
@@ -14,6 +16,17 @@ const routes = [
       name: 'LandingPage',
       path: '/',
       component: LandingPage,
+      props: true,
+    },
+    {
+      name: 'UpdateProfile',
+      path: '/update',
+      component: EditarPerfil,
+      props: true,
+    },{
+      name: 'MakeReportsPage',
+      path: '/report',
+      component: ViewReportePosts,
       props: true,
     },
     {

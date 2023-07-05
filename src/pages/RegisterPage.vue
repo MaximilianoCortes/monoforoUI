@@ -2,21 +2,22 @@
   <div class="register">
     <div class="container-half1">
       <!-- Componente a la izquierda -->
-        <CarouselComponent 
-          :imagenes="[
-            'https://i.imgur.com/TGSEAPB.png',
-            'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
-            'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
-          ]" />
+      <CarouselComponent 
+        :imagenes="[
+          'https://i.imgur.com/TGSEAPB.png',
+          'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
+          'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
+        ]"
+      />
     </div>
     <div class="container-half2">
-      <!-- Formulario de login a la derecha -->
+      <!-- Formulario de registro a la derecha -->
       <div class="register-container">
         <h2 class="mb-4">Registro</h2>
         <br><br>
         <form @submit.prevent="submitForm">
           <div class="form-group mb-3">
-            <input type="usuario" class="form-control" id="usuario" placeholder="Nombre de usuario" v-model="usuario" required>
+            <input type="usuario" class="form-control" id="usuario" placeholder="Nombre de usuario" v-model="name" required>
           </div>
           <div class="form-group mb-3">
             <input type="email" class="form-control" id="email" placeholder="Correo" v-model="email" required>
@@ -29,8 +30,8 @@
           </div>
           <br><br>
           <button type="submit" class="btn btn-primary btn-block mb-3">Registrarse</button>
-          <router-link to="/login"><button class="btn btn-secondary btn-block">Iniciar sesion</button></router-link>
-        </form>   
+          <button type="button" class="btn btn-secondary btn-block" @click="goToLogin">Iniciar sesión</button>
+        </form>
       </div>
     </div>
   </div>
@@ -47,25 +48,35 @@ export default {
   },
   data() {
     return {
+      name: '',
       email: '',
-      password: ''
+      password: '',
+      passwordver: ''
     };
   },
   methods: {
     submitForm() {
-      const loginData = {
-        correo: this.email,
-        contraseña: this.password
+      const url = `http://localhost:3000/register`;
+
+      const registerData = {
+        name: this.name,
+        email: this.email,
+        password: this.password
       };
 
-      axios.get('/api/login', loginData)
+      axios.post(url, registerData)
         .then(response => {
           console.log(response.data);
+          // Redirigir a la página de inicio de sesión
+          this.$router.push('/login');
         })
         .catch(error => {
           console.error(error);
         });
     },
+    goToLogin() {
+      this.$router.push('/login');
+    }
   }
 };
 </script>
@@ -103,8 +114,6 @@ export default {
 .register-container .form-group {
   width: 100%;
 }
-
-
 
 .register-container button {
   width: 100%;

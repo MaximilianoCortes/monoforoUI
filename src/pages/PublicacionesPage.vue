@@ -1,5 +1,4 @@
-<template>
-  
+<template> 
   <div id="pagina">
     
     <NavBar/>
@@ -31,7 +30,7 @@
 <script>
 import NavBar from '../components/NavBar.vue'
 import PublicacionComponent from '../components/PublicacionComponent.vue'
-
+import axios from 'axios'
 export default {
   name: 'PublicacionesPage',
   components: {
@@ -40,87 +39,22 @@ export default {
   },
   data() {
     return {
-      publicaciones: [
-        {
-          usuario: {
-            nombre: 'Nombre de Usuario',
-            imagen: 'https://i.imgur.com/AF7dgEo.png'
-          },
-          titulo: 'Título de la publicación',
-          cuerpo: {
-            texto: 'Contenido de la publicación',
-            imagen: 'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif' // Opcional, si no hay imagen, puedes dejarlo como null o eliminarlo del objeto
-          },
-          likes: 0,
-          dislikes: 0
-        },
-        {
-          usuario: {
-            nombre: 'Nombre de Usuario',
-            imagen: 'https://i.imgur.com/OpfvTcj.png'
-          },
-          titulo: 'Título de la publicación',
-          cuerpo: {
-            texto: 'Contenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar estoContenido de la publicación tiene que ser muy largo asi que voy a copiar y pegar esto',
-            imagen: 'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif' 
-          },
-          likes: 0,
-          dislikes: 0
-        },
-        {
-          usuario: {
-            nombre: 'Nombre de Usuario',
-            imagen: 'https://i.imgur.com/OpfvTcj.png'
-          },
-          titulo: 'Título de la publicación',
-          cuerpo: {
-            texto: 'Contenido de la publicación',
-            imagen: 'https://example.com/imagen.jpg'
-          },
-          likes: 0,
-          dislikes: 0
-        },
-        {
-          usuario: {
-            nombre: 'Nombre de Usuario',
-            imagen: 'https://i.imgur.com/OpfvTcj.png'
-          },
-          titulo: 'Título de la publicación',
-          cuerpo: {
-            texto: 'Contenido de la publicación',
-            imagen: 'https://example.com/imagen.jpg' 
-          },
-          likes: 0,
-          dislikes: 0
-        },
-        {
-          usuario: {
-            nombre: 'Nombre de Usuario',
-            imagen: 'https://i.imgur.com/OpfvTcj.png'
-          },
-          titulo: 'Título de la publicación',
-          cuerpo: {
-            texto: 'Contenido de la publicación',
-            imagen: 'https://example.com/imagen.jpg' 
-          },
-          likes: 0,
-          dislikes: 0
-        },
-        {
-          usuario: {
-            nombre: 'Nombre de Usuario',
-            imagen: 'https://i.imgur.com/OpfvTcj.png'
-          },
-          titulo: 'Título de la publicación',
-          cuerpo: {
-            texto: 'Contenido de la publicación',
-            imagen: 'https://example.com/imagen.jpg' 
-          },
-          likes: 0,
-          dislikes: 0
-        },
-      ]
+      publicaciones: []
     };
+  },
+  methods:{
+    submitForm() {
+      const url = `http://localhost:3000/all_posts`;
+      axios.get(url)
+        .then(response => {
+          console.log(response.data);
+          this.publicaciones=response.data
+        })
+        .catch(error => {
+          console.error(error);
+          this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
+        });
+    },
   }
 };
 </script>

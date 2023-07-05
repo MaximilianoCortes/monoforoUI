@@ -2,12 +2,13 @@
   <div class="login">
     <div class="container-half1">
       <!-- Componente a la izquierda -->
-        <CarouselComponent 
-          :imagenes="[
-            'https://i.imgur.com/zkar2i8.png',
-            'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
-            'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
-          ]" />
+      <CarouselComponent 
+        :imagenes="[
+          'https://i.imgur.com/zkar2i8.png',
+          'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
+          'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
+        ]"
+      />
     </div>
     <div class="container-half2">
       <!-- Formulario de login a la derecha -->
@@ -22,9 +23,10 @@
             <input type="password" class="form-control" id="password" v-model="password" placeholder="Contraseña" required>
           </div>
           <br><br>
-          <router-link to="/Publicaciones"><button type="submit" class="btn btn-primary btn-block mb-3">Iniciar sesión</button></router-link>
-          <router-link to="/Register"><button class="btn btn-secondary btn-block">Registrarse</button></router-link>
+          <button type="submit" class="btn btn-primary btn-block mb-3">Iniciar sesión</button>
+          <button type="button" class="btn btn-secondary btn-block" @click="goToRegister">Registrarse</button>
         </form>
+        <div v-if="errorMessage" class="text-danger">{{ errorMessage }}</div>
       </div>
     </div>
   </div>
@@ -42,24 +44,33 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      errorMessage: ''
     };
   },
   methods: {
     submitForm() {
+      const url = `http://localhost:3000/login`;
+
       const loginData = {
-        correo: this.email,
-        contraseña: this.password
+        email: this.email,
+        password: this.password
       };
 
-      axios.get('/api/login', loginData)
+      axios.post(url, loginData)
         .then(response => {
           console.log(response.data);
+          // Aquí puedes realizar la redirección a la siguiente pestaña
+          this.$router.push('/Publicaciones');
         })
         .catch(error => {
           console.error(error);
+          this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
         });
     },
+    goToRegister() {
+      this.$router.push('/Register');
+    }
   }
 };
 </script>
@@ -97,7 +108,6 @@ export default {
 .login-container .form-group {
   width: 100%;
 }
-
 
 .login-container button {
   width: 100%;
