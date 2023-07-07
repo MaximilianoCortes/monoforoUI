@@ -34,7 +34,7 @@
           aria-expanded="false"
         >
           <img
-            :src="profile.picture"
+            :src="profile.picture || `https://th.bing.com/th/id/R.3d35762841538ffb1b3304618409d725?rik=kF7EZRj9RpU5kw&riu=http%3a%2f%2ffreevector.co%2fwp-content%2fuploads%2f2011%2f08%2f77853-msn-user-avatar.png&ehk=bBN9nR%2bWYDtj0HQRvGozm%2fzocYi9dXPUv7WgbXfOD%2fk%3d&risl=&pid=ImgRaw&r=0`"
             alt="Perfil"
             width="30"
             height="30"
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li>
-            <router-link to="/Reportes" class="dropdown-item"
+            <router-link v-if="user.roles && user.roles.includes('Admin')" to="/Reportes" class="dropdown-item"
               >Panel de control</router-link
             >
           </li>
@@ -72,8 +72,8 @@ export default {
   name: "NavBar",
   data() {
     return {
-      user: {},
-      profile: {},
+      user: [],
+      profile: [],
       backgroundImage: "url('https://i.imgur.com/QdyXDv6.png')",
     };
   },
@@ -101,7 +101,7 @@ export default {
     },
     getCurrentProfile() {
       axios
-        .get(`http://localhost:3000/${this.user._id}/profile`)
+        .get(`http://localhost:3000/profile/${this.user._id}`)
         .then((response) => {
           this.profile = response.data;
           console.log(response.data);

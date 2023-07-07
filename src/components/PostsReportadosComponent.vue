@@ -6,40 +6,17 @@
       <li
         v-for="post in reportedPosts"
         :key="post._id"
-        class="list-group-item d-flex justify-content-between align-items-center"
+        class="list-group-item"
       >
-        <div class="d-flex flex-column">
-          <h5>{{ post_data.title }}</h5>
-          <p class="text-muted">{{ post.report_reason }}</p>
-        </div>
-        <div>
-          <button
-            @click="$emit('delete-post', post.post_id)"
-            class="btn btn-danger btn-sm mr-2"
-          >
-            Eliminar
-          </button>
-          <button
-            @click="$emit('dismiss-report', post._id)"
-            class="btn btn-secondary btn-sm"
-          >
-            Descartar
-          </button>
-          <router-link
-            :to="`/Revisar/${post.post_id}`"
-            class="btn btn-secondary btn-sm"
-          >
-            Revisar
-          </router-link>
-        </div>
+        <ShowCompletedReportedPosts :reported_post="post" @delete-post="deletePost" @dismiss-report="dismissReport"></ShowCompletedReportedPosts>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
+import ShowCompletedReportedPosts from './ShowCompletedReportedPosts.vue';
+import axios from 'axios';
 export default {
   name: "PostsReportadosComponent",
   props: {
@@ -48,32 +25,36 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      post_data: [],
-    };
+  components: {
+    ShowCompletedReportedPosts
   },
-  mounted() {
-    this.Post();
-  },
-  methods: {
-    Post() {
-      const url = `http://localhost:3000/getPost`;
-
-      const postData = {
-        post_id: this.reportedPosts.post_id,
-      };
-
-      axios
-        .post(url, postData)
-        .then((response) => {
-          this.post_data = response.data;
-          console.log(this.post_data);
+  methods:{
+    deletePost(postId) {
+      const url = `http://localhost:3000/${postId}`;
+      axios.delete(url)
+        .then(response => {
+            console.log(response)
+            console.log('Eliminar publicación con ID:', postId);
+       location.reload();
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(error);
         });
+   
     },
-  },
+    dismissReport(reportId) {
+      const url = `http://localhost:3000/dismiss_report/${reportId}`;
+      axios.delete(url)
+        .then(response => {
+            console.log(response)
+            console.log('Descartar reporte con ID:', reportId);
+      location.reload();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    
+    },
+  }
 };
 </script>

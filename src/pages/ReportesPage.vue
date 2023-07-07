@@ -7,8 +7,7 @@
         <div class="col-lg-6">
           <div class="text-center">
           </div>
-          <PostsReportadosComponent :reportedPosts="reportedPosts"
-            @delete-post="deletePost" @dismiss-report="dismissReport" />
+          <PostsReportadosComponent :reportedPosts="reportedPosts"/>
         </div>
         <div class="col-lg-6">
           <div class="text-center">
@@ -81,42 +80,19 @@ this.showResponsibleUsers()
 
     },
 
-    deletePost(postId) {
-      const url = `http://localhost:3000/${postId}`;
-      axios.delete(url)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      console.log('Eliminar publicación con ID:', postId);
-      location.reload();
-    },
-    dismissReport(reportId) {
-      const url = `http://localhost:3000/dismiss_report/${reportId}`;
-      axios.delete(url)
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-          console.error(error);
-        });
-      console.log('Descartar reporte con ID:', reportId);
-      location.reload();
-    },
     banUser(user_id) {
       const url = `http://localhost:3000/ban/${user_id}`;
       axios.post(url)
         .then(response => {
             console.log(response)
+            console.log('Banear usuario con ID:', user_id);
+            location.reload();
         })
         .catch(error => {
           console.error(error);
           this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
         });
-      console.log('Banear usuario con ID:', user_id);
-      location.reload();
+
     }
   }
 };

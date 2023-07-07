@@ -28,6 +28,15 @@
           <div class="form-group mb-3">
             <input type="password" class="form-control" id="passwordver" placeholder="Repite tu contraseña" v-model="passwordver" required>
           </div>
+                    <div class="form-check mb-3">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="admin"
+              v-model="isAdmin"
+            />
+            <label class="form-check-label" for="admin">Admin</label>
+          </div>
           <br><br>
           <button type="submit" class="btn btn-primary btn-block mb-3">Registrarse</button>
           <button type="button" class="btn btn-secondary btn-block" @click="goToLogin">Iniciar sesión</button>
@@ -51,17 +60,28 @@ export default {
       name: '',
       email: '',
       password: '',
-      passwordver: ''
+      passwordver: '',
+      isAdmin: false,
     };
   },
   methods: {
     submitForm() {
       const url = `http://localhost:3000/register`;
+   
+      let roles=[];
+
+      if(this.isAdmin){
+        roles.push("Admin")
+      }
+ 
 
       const registerData = {
         name: this.name,
         email: this.email,
-        password: this.password
+        password: this.password,
+        roles:roles
+ 
+   
       };
 
       axios.post(url, registerData)

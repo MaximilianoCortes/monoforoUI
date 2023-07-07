@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      publicacion: {},
+      publicacion: [],
       post_id: ''
     };
   },
@@ -51,8 +51,12 @@ export default {
   },
   methods: {
     async submitForm() {
-      const url = `http://localhost:3000/getPost/${this.post_id}`;
-      await axios.get(url)
+      const url = `http://localhost:3000/getPost`;
+
+      const postData={
+        post_id: this.post_id
+      }
+      await axios.post(url,postData)
         .then(response => {
           console.log(response.data.post);
           this.publicacion = response.data.post;

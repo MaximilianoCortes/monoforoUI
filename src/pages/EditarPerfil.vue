@@ -37,6 +37,7 @@ export default {
       description: "",
       image: "",
       banner: "",
+      user_id:'',
     };
   },
   created() {
@@ -47,6 +48,9 @@ export default {
   },
   components: {
     NavBar,
+  },
+  mounted(){
+    this.CurrentProfile()
   },
   methods: {
     submitForm() {
@@ -61,15 +65,28 @@ export default {
       axios.put(url,UpdateData)
         .then(response => {
           console.log(response.data);
-          this.publicaciones=response.data
-
-          this.$router.push(`/Perfil`)
+          this.$router.push(`/Perfil/${this.user_id}`)
         })
         .catch(error => {
           console.error(error);
           this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
         });
     },
+
+    CurrentProfile() {
+      axios
+        .get(`http://localhost:3000/current`)
+        .then((response) => {
+          this.user_id = response.data._id;
+          console.log(this.user_id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    
+    
   },
 };
 </script>
