@@ -1,69 +1,75 @@
 <template>
-    <div class="landing-page">
-      <div class="carousel-container">
-
-        <CarouselComponent 
+  <div class="landing-page">
+    <div class="carousel-container">
+      <CarouselComponent 
         :imagenes="[
-          'https://i.imgur.com/K7MTcwq.jpeg',
-          'https://i.imgur.com/xv0tfCG.png',
+          'https://i.imgur.com/3g9Ea2z.png',
           'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
           'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
-        ]" 
-        :carouselWidth="carouselWidth" 
-        :carouselHeight="carouselHeight" />
-
-      </div>
-      <div class="buttons-section">
-        <router-link to="/login" class="button">Iniciar sesión</router-link>
-        <router-link to="/register" class="button">Registrarse</router-link>
-      </div>
+        ]" />
     </div>
-  </template>
-  
-  <script>
-  import CarouselComponent from '../components/CarouselComponent';
-  
-  export default {
-    
-    name: 'LandingPage',
-    components: {
-      CarouselComponent,
+    <div class="buttons-section">
+      <button class="btn btn-primary" @click="redirectToLogin">Iniciar sesión</button>
+      <button class="btn btn-secondary" @click="redirectToRegister">Registrarse</button>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import CarouselComponent from '../components/CarouselComponent';
+
+export default {
+  name: 'LandingPage',
+  components: {
+    CarouselComponent,
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    redirectToLogin() {
+      this.$router.push('/login');
     },
-    data() {
-      return {
-        carouselWidth: '1920px',
-        carouselHeight: '600px'
-      };
+    redirectToRegister() {
+      this.$router.push('/register');
     },
-  };
-  </script>
-  
-  <style scoped>
-  .landing-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100vh;
-  }
-  
-  .carousel-container {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 70%;
-  }
-  
-  .buttons-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 30%;
-  }
-  
-  .button {
-    margin: 0 10px;
-  }
-  </style>
-  
+  },
+};
+</script>
+
+<style scoped>
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  background-color: #4F77B0;
+}
+
+.buttons-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+}
+
+.btn {
+  margin: 0 100px;
+  width: 40%;
+  height: 30%;
+  text-align: center;
+}
+
+
+</style>
