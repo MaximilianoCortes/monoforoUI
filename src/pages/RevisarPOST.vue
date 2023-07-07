@@ -12,7 +12,8 @@
                   <p class="card-text text-muted font-weight-light"> {{ publicacion.body_text }}</p>
                   <img v-if="publicacion.img" :src="publicacion.img" alt="Imagen del post" class="card-img-top mw-100 mh-100">
                   <br>
-                  <router-link :to="`/Perfil/${publicacion.userId}`" id="verPerfil" class="btn btn-primary">Ver perfil</router-link>
+                  <router-link :to="`/Perfil/${publicacion.userId}`" id="verPerfil" class="btn btn-secondary">Ver perfil</router-link>
+                  <router-link :to="`/Reportes`" id="reportes" class="btn btn-secondary">Volver</router-link>
                 </div>
               </div>
             </div>
