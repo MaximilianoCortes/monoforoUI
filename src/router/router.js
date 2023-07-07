@@ -9,7 +9,6 @@ import CrearPublicacionPage from '../pages/CrearPublicacionPage.vue';
 import PerfilPage from '../pages/PerfilPage.vue';
 import EditarPerfil from '../pages/EditarPerfil.vue';
 import ViewReportePosts from '../pages/ViewReportePosts.vue';
-import perfilPageByPubli from '../pages/PerfilPageByPubli.vue';
 import RevisionP from '../pages/RevisarPOST.vue'
 
 const routes = [
@@ -78,18 +77,12 @@ const routes = [
     },
     {
       name: 'PerfilPage',
-      path: '/Perfil',
+      path: '/Perfil/:userId',
       component: PerfilPage,
       props:true,
       meta: {autenticacion : true}
     },
-    {
-      name: 'PerfilPageByPubli',
-      path: '/Perfil/:userId',
-      component: perfilPageByPubli,
-      props:true,
-      meta: {autenticacion : true}
-    },
+  
     
     
   ];

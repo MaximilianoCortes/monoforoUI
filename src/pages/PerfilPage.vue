@@ -21,7 +21,7 @@
           <h2>{{ save_user.name }}</h2>
           <h4>Descripción</h4>
           <p>{{ save_profile.description }}</p>
-          <router-link to="/update" class="btn-edit-profile">Editar perfil</router-link>
+            <router-link to="/update" class="btn-edit-profile" v-if="current">Editar perfil</router-link>
         </div>
       </div>
     </div>
@@ -35,9 +35,10 @@ import NavBar from "../components/NavBar.vue";
 export default {
   data() {
     return {
-      save_user: {},
-      save_profile: {},
+      save_user: [],
+      save_profile: [],
       user_id: "",
+      current: false
     };
   },
   components: {
@@ -47,27 +48,49 @@ export default {
     const token = localStorage.getItem("token");
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      
     }
-   
   },
-  mounted(){
-    this.CurrentUser();
+  mounted() {
+    this.user_id = this.$route.params.userId;
+    this.checkCurrentUser();
+    this.CurrentProfile()
   },
-  
   methods: {
-    CurrentUser() {
+    checkCurrentUser() {
       axios
         .get("http://localhost:3000/current")
         .then((response) => {
+          const currentUserId = response.data._id;
+
+          if (currentUserId === this.user_id) {
+            this.save_user = response.data
+            this.current=true
+          } else {
+            this.publiUser();
+         
+          }
+      
+
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      
+    },
+    publiUser() {
+      axios
+        .get(`http://localhost:3000/${this.user_id}/user`)
+        .then((response) => {
           this.save_user = response.data;
-          this.user_id = response.data._id;
           console.log(response.data);
-          this.CurrentProfile()
+         
         })
         .catch((error) => {
           console.log(error);
         });
     },
+
     CurrentProfile() {
       axios
         .get(`http://localhost:3000/${this.user_id}/profile`)

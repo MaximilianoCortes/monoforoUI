@@ -8,7 +8,7 @@
         <br><input type="text" class="form-control" id="exampleFormControlInput1" v-model="title" placeholder="Titulo" required>
       </div>
       <div class="mb-3">
-        <textarea class="form-control" id="exampleFormControlTextarea1" v-model="body_text" placeholder="Cuerpo de texto (opcional)" rows="5"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" v-model="body_text" placeholder="Cuerpo de texto" rows="5"></textarea>
       </div>
       <div class="d-flex justify-content-between">
         <div class="mb-3" style="width: 35%;">
