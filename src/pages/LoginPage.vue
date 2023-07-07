@@ -4,9 +4,7 @@
       <!-- Componente a la izquierda -->
       <CarouselComponent 
         :imagenes="[
-          'https://i.imgur.com/zkar2i8.png',
-          'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
-          'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
+          'https://i.imgur.com/zkar2i8.png'
         ]"
       />
     </div>

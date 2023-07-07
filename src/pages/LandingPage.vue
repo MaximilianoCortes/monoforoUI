@@ -4,8 +4,6 @@
       <CarouselComponent 
         :imagenes="[
           'https://i.imgur.com/3g9Ea2z.png',
-          'https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',
-          'https://media3.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif'
         ]" />
     </div>
     <div class="buttons-section">
