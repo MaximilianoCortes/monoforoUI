@@ -34,6 +34,7 @@
               :key="publicacion._id"
               :publicacion="publicacion"
               :current_user="current"
+              :publi_user="publi_user"
             />
           </div>
         </div>
@@ -54,7 +55,7 @@ export default {
       save_profile: [],
       user_id: ``,
       current: false,
-      different_user:false,
+      publi_user:false,
       publicaciones: [],
     };
   },
@@ -86,7 +87,8 @@ export default {
             this.current = true;
           } else {
             this.publiUser();
-  
+            this.publi_user=true
+            
           }
         })
         .catch((error) => {

@@ -7,7 +7,7 @@
           {{ user.name }}
         </button>
         <ul  class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-          <li><router-link :to="`/Perfil/${post.userId}`" class="dropdown-item">Ver perfil</router-link></li>
+          <li><router-link v-if="!publi_user" :to="`/Perfil/${post.userId}`" class="dropdown-item">Ver perfil</router-link></li>
           <li><router-link :to="`/report/${post._id}`" class="dropdown-item">Reportar</router-link></li>
         </ul>
       </div>
@@ -44,6 +44,9 @@ export default {
       required: true
     },
     current_user: {
+      type: Boolean
+    },
+    publi_user: {
       type: Boolean
     },
   },
