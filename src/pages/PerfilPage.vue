@@ -30,7 +30,7 @@
         <div class="publicaciones-lista ">
           <div class="publicaciones-container ">
             <PublicacionComponent
-              v-for="publicacion in publicaciones"
+              v-for="publicacion in publicaciones.slice().reverse()"
               :key="publicacion._id"
               :publicacion="publicacion"
               :current_user="current"

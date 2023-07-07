@@ -5,10 +5,10 @@
     <div class="container" style="width: 60%;"><br>
       <h2 style="text-align:center;">Crear Publicación</h2>
       <div class="mb-3">
-        <br><input type="text" class="form-control" id="exampleFormControlInput1" v-model="title" placeholder="Titulo" required>
+        <br><input type="text" class="form-control" id="exampleFormControlInput1" v-model="title" placeholder="Titulo" required maxlength="40">
       </div>
       <div class="mb-3">
-        <textarea class="form-control" id="exampleFormControlTextarea1" v-model="body_text" placeholder="Cuerpo de texto" rows="5"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" v-model="body_text" placeholder="Cuerpo de texto" rows="5" required maxlength="400"></textarea>
       </div>
       <div class="d-flex justify-content-between">
         <div class="mb-3" style="width: 35%;">

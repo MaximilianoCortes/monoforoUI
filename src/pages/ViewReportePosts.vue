@@ -8,6 +8,7 @@
           class="form-control"
           id="reportReason"
           v-model="reason"
+          required maxlength="40"
         ></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Enviar</button>
