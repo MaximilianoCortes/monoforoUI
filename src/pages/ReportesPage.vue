@@ -81,6 +81,9 @@ this.showResponsibleUsers()
     },
 
     banUser(user_id) {
+
+      if (confirm(`Está seguro que quiere banear a este usuario?`)) {
+      
       const url = `http://localhost:3000/ban/${user_id}`;
       axios.post(url)
         .then(response => {
@@ -88,11 +91,12 @@ this.showResponsibleUsers()
             console.log('Banear usuario con ID:', user_id);
             location.reload();
         })
+        
         .catch(error => {
           console.error(error);
           this.errorMessage = 'Error en el inicio de sesión. Por favor, verifica tu correo y contraseña.';
         });
-
+      }
     }
   }
 };

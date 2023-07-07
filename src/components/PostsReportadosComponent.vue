@@ -30,6 +30,9 @@ export default {
   },
   methods:{
     deletePost(postId) {
+
+      if (confirm("Esta seguro de que quiere eliminar este post")) {
+        
       const url = `http://localhost:3000/${postId}`;
       axios.delete(url)
         .then(response => {
@@ -40,6 +43,7 @@ export default {
         .catch(error => {
           console.error(error);
         });
+      }
    
     },
     dismissReport(reportId) {

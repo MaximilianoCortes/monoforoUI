@@ -58,9 +58,7 @@ export default {
       };
 
       axios.post(url, loginData)
-        .then(response => {
-          console.log(response.data);
-         
+        .then(response => {         
           localStorage.setItem('token', response.data.token);
 
           axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;

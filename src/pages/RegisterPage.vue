@@ -87,10 +87,16 @@ export default {
       axios.post(url, registerData)
         .then(response => {
           console.log(response.data);
-          // Redirigir a la página de inicio de sesión
+    
+                    
+          alert('Registro exitoso. Serás redirigido a la ventana de inicio de sesión.');
+
           this.$router.push('/login');
+      
         })
         .catch(error => {
+          alert('Error, no se ha podido crear la cuenta, intente cambiando algunos datos. hint:(email :P)');
+
           console.error(error);
         });
     },
